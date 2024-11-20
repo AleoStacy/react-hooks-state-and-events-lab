@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Item from "./Item";
 
 function ShoppingList({ items }) {
+  // Step 1: Add state to track selected category
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // Step 2: Filter items based on selected category
+  const filteredItems = selectedCategory === "All"
+    ? items
+    : items.filter(item => item.category === selectedCategory);
+
+  // Step 3: Event handler for category selection change
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
   return (
     <div className="ShoppingList">
       <div className="Filter">
-        <select name="filter">
+        <select name="filter" value={selectedCategory} onChange={handleCategoryChange}>
           <option value="All">Filter by category</option>
           <option value="Produce">Produce</option>
           <option value="Dairy">Dairy</option>
@@ -13,7 +26,8 @@ function ShoppingList({ items }) {
         </select>
       </div>
       <ul className="Items">
-        {items.map((item) => (
+        {/* Step 4: Map through the filtered items */}
+        {filteredItems.map((item) => (
           <Item key={item.id} name={item.name} category={item.category} />
         ))}
       </ul>

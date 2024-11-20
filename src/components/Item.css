@@ -1,0 +1,15 @@
+.in-cart {
+  background-color: lightgreen;
+  font-weight: bold;
+}
+
+button.add {
+  padding: 5px 10px;
+  background-color: lightblue;
+  border: none;
+  cursor: pointer;
+}
+
+button.add:hover {
+  background-color: lightcoral;
+}
